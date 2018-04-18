@@ -19,9 +19,61 @@ cordova-hot-code-push 使用指南
 
 ## 1 配置环境
 
-## 2 创建[Cordova]()项目
+### 1.1 检测是否安装了node.js
 
-## 3 安装[cordova-hot-code-push]()插件
+打开终端输入`npm --version`，若无打印版本则需先安装node.js
+
+### 1.2 命令行安装cordova
+
+`npm install -g cordova`
+
+## 2 创建[Cordova](https://cordova.apache.org)项目
+
+通过命令行创建Cordova项目，并添加iOS/Android platform
+
+```
+cordova create TestProject com.example.testproject TestProject
+cd ./TestProject
+cordova platform add android
+cordova platform add ios
+```
+
+## 3 安装[cordova-hot-code-push](https://github.com/nordnet/cordova-hot-code-push)插件
+
+
+
+### 3.1 添加cordova-hot-code-push-plugin
+
+`cordova plugin add cordova-hot-code-push-plugin`
+
+### 3.2 添加本地调试插件
+
+`cordova plugin add cordova-hot-code-push-local-dev-addon`
+
+### 3.3 添加Cordova Hot Code Push CLI 客户端
+
+`npm install -g cordova-hot-code-push-cli`
+
+### 3.4 启动本地服务
+
+`cordova-hcp server`
+
+你会看到如下图：
+```
+Running server
+Checking:  /Cordova/TestProject/www
+local_url http://localhost:31284
+Warning: .chcpignore does not exist.
+Build 2015.09.02-10.17.48 created in /Cordova/TestProject/www
+cordova-hcp local server available at: http://localhost:31284
+cordova-hcp public server available at: https://5027caf9.ngrok.com
+```
+
+### 3.5 打开一个新的终端，进入项目根目录，启动app
+
+`cordova run`
+
+### 3.6 修改TestPorject里面www文件夹下的index.html并保存，几秒后，就会在模拟器或手机看到变化
 
 ## 4 热更新步骤
 
