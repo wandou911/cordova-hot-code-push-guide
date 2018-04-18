@@ -265,11 +265,14 @@ Cordova 项目的 config.xml 文件用于设置项目配置选项，Cordova Hot 
 
 </chcp>
 
-</pre>
 config-file：配置文件 chcp.json 从服务器上加载的路径（必须的配置项）
+
 auto-download：是否自动下载热更新代码，默认是 true
+
 auto-install：是否自动安装热更新代码，默认是 true
+
 native-interface：当前 native side 的版本号
+
 可以禁用自动下载，安装热更新代码，通过手动调用执行。
 
 
