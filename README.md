@@ -191,7 +191,9 @@ cordova 项目主要包含两部分：web content 和 native side。前者是网
 
 ⑤ update 何时触发进行安装（install）代码热更新
 
-代码热更新涉及两个主要过程：fetch update 和 install update。前者获取热更新变更文件，后者将获取到的更新文件安装到 App 中生效。此字段是针对后者，何时 install update，可选值：
+代码热更新涉及两个主要过程：fetch update 和 install update。
+
+前者获取热更新变更文件，后者将获取到的更新文件安装到 App 中生效。此字段是针对后者，何时 install update，可选值：
 
 start：应用启动，默认项（install update when application is launched）
 
