@@ -107,9 +107,14 @@ S_DIR=/Users/didi/Desktop/xcode/demo/TestProject/platforms/ios/build/sharedpch
 
 ③ 更新模块 (update loader) 从 Cordova 项目配置 config.xml 文件中获取 config-file （热更新插件配置文件 chcp.json 的加载路径），然后加载配置
 文件 chcp.json，获取其中的 release 版本号，对比当前的版本号，若二者不同，说明有新版本，执行下一步
+
 ④ 更新模块 (update loader) 从 chcp.json 配置文件中获取 content_url 作为 base url，然后加载 chcp.manifest 文件，或者新版本文件变更信息
+
+
 ⑤ 更新模块 (update loader) 根据 content_url 作为 base url，下载所有变更、新增文件
+
 ⑥ 如果一切顺利， 更新模块 (update loader) 发送通知，该更新已准备好进行安装
+
 ⑦ 安装更新，应用重定向到新版本页面
 
 ### 插件配置
@@ -154,10 +159,13 @@ chcp.json 置于 www 目录根目录，例子如下：
 1、配置项
 
 ① name 项目名称
+
 ② content_url web 项目文件在服务器上的存储路径（即 www 目录在云存储中的目录路径），热更新插件将此 URL 作为 base url，用于下载配置文件和项目更新
 文件（必需的配置项）
+
 ③ release 描述 web 项目版本号，每一次发布的版本号必须唯一（默认使用时间戳，格式为：yyyy.MM.dd-HH.mm.ss），插件是将版本号进行字符串相等比较来判断
 是否存在新版本（必需的配置项）
+
 ④ min_native_interface
 Minimum version of the native side that is required to run this web content
 cordova 项目主要包含两部分：web content 和 native side。前者是网页内容，后者是 cordova 插件，为网页提供原生 API 支持，web content 的运行是基
@@ -180,14 +188,18 @@ cordova 项目主要包含两部分：web content 和 native side。前者是网
 
 如果服务器上配置文件 chcp.json 中的 min_native_interface 值为 10，高于 config.xml文件中 <native-interface />，那么热更新将无法正常进行。此
 时，插件会提示错误 chcp_updateLoadFailed，提示应用需要更新升级
+
 ⑤ update 何时触发进行安装（install）代码热更新
 
 代码热更新涉及两个主要过程：fetch update 和 install update。前者获取热更新变更文件，后者将获取到的更新文件安装到 App 中生效。此字段是针对后者，何时 install update，可选值：
 
 start：应用启动，默认项（install update when application is launched）
+
 resume：应用从后台恢复（install the update when application is resumed from background state）
+
 now：下载更新后立即执行（install update as soon as it has been downloaded）
 当然也可以禁用自动 install update，手动调用相关 API 进行 install
+
 ⑥ android_identifier / ios_identifier
 
 android_identifier: Package name of the Android version of the application
@@ -263,9 +275,13 @@ Cordova 项目的 config.xml 文件用于设置项目配置选项，Cordova Hot 
 </chcp>
 
 config-file：配置文件 chcp.json 从服务器上加载的路径（必须的配置项）
+
 auto-download：是否自动下载热更新代码，默认是 true
+
 auto-install：是否自动安装热更新代码，默认是 true
+
 native-interface：当前 native side 的版本号
+
 可以禁用自动下载，安装热更新代码，通过手动调用执行。
 
 
