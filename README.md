@@ -252,11 +252,13 @@ Content manifest describes the state of the files inside your web project.
 chcp.manifest 文件中包含的是 web content 静态文件信息，每一个项都包括两个字段：
 
 file: 相对于 www 目录的文件路径
-hash: 文件的 MD5 哈希值，用于判断文件是否发生变更
+
+hash: 文件的 MD5 哈希值，用于判断文件是否发生变更 
+
 基于 chcp.manifest 文件
 
-在 fetch update 阶段，从服务器上获取新增、修改文件
-在 install update 阶段，移除被删除文件
+> 在 fetch update 阶段，从服务器上获取新增、修改文件
+> 在 install update 阶段，移除被删除文件
 
 ### Cordova config.xml 配置
 
