@@ -42,19 +42,19 @@ cordova platform add ios
 
 
 
-### 3.1 添加cordova-hot-code-push-plugin
+3.1 添加cordova-hot-code-push-plugin
 
 `cordova plugin add cordova-hot-code-push-plugin`
 
-### 3.2 添加本地调试插件
+3.2 添加本地调试插件
 
 `cordova plugin add cordova-hot-code-push-local-dev-addon`
 
-### 3.3 添加Cordova Hot Code Push CLI 客户端
+3.3 添加Cordova Hot Code Push CLI 客户端
 
 `npm install -g cordova-hot-code-push-cli`
 
-### 3.4 启动本地服务
+3.4 启动本地服务
 
 `cordova-hcp server`
 
@@ -69,11 +69,27 @@ cordova-hcp local server available at: http://localhost:31284
 cordova-hcp public server available at: https://5027caf9.ngrok.com
 ```
 
-### 3.5 打开一个新的终端，进入项目根目录，启动app
+
+3.5 打开一个新的终端，进入项目根目录，启动app
 
 `cordova run`
 
-### 3.6 修改TestPorject里面www文件夹下的index.html并保存，几秒后，就会在模拟器或手机看到变化
+如果报错：
+```
+** BUILD SUCCEEDED **
+
+Error: ios-deploy was not found. Please download, build and install version 1.8.3 or greater from https://github.com/phonegap/ios-deploy into your path, or do 'npm install -g ios-deploy'
+```
+
+或者：
+```
+Error: Error code 65 for command: xcodebuild with args: -xcconfig,/Users/didi/Desktop/xcode/demo/TestProject/platforms/ios/cordova/build-debug.xcconfig,-project,TestProject.xcodeproj,-target,TestProject,-configuration,Debug,-sdk,iphonesimulator,-destination,platform=iOS Simulator,build,CONFIGURATION_BUILD_DIR=/Users/didi/Desktop/xcode/demo/TestProject/platforms/ios/build/emulator,SHARED_PRECOMPS_DIR=/Users/didi/Desktop/xcode/demo/TestProject/platforms/ios/build/sharedpch
+```
+直接进入项目目录 TestProject/platforms/ios,使用Xcode8打开项目选择模拟器或者真机运行
+
+注意：真机运行时，需要手机和电脑在同一局域网
+
+3.6 修改TestPorject里面www文件夹下的index.html并保存，几秒后，就会在模拟器或手机看到变化
 
 ## 4 热更新步骤
 
