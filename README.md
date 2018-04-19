@@ -297,8 +297,68 @@ native-interface：当前 native side 的版本号
 * 执行 `cordova-hcp build` 生成 `chcp.json` 和 `chcp.manifest` 文件
 * 将 `www` 目录下的静态文件上传至服务器或者云存储目录
 
-## 5 补充说明
+## 5 [补充，手动更新](https://www.jianshu.com/p/40c7eaa5a8c6)
 
-### 5.1 本地调试
+以上教程的热更新属于自动化的，在用户完全不知情的情况下，于是就有了可选择更新的需求：
 
-### 5.2 手动更新
+```
+    <chcp>
+        <auto-download enabled="false" />
+        <auto-install enabled="false" />
+        <config-file url="http://120.24.77.175:8080/ehospital/views/MSUI/chcp.json" />
+    </chcp>
+
+```
+
+在config.xml改成以上配置，取消自动下载，取消自动安装，然后通过[插件提供的jsAPI](https://link.jianshu.com?
+
+t=https://github.com/nordnet/cordova-hot-code-push/wiki/JavaScript-module)进行手动更新，以下在deviceready事件触发中示例（仅供参考）：
+
+```
+    document.addEventListener('deviceready', () => {
+      let chcp = window.chcp;
+      // 检测更新
+      chcp.fetchUpdate((error, data) => {
+
+        // 表示没有更新版本，或者其他错误，详情的信息参考上面的chcp error链接
+        if (error) {
+          console.log('--fetchUpdate error--', error.code, error.description);
+          return;
+        }
+
+        // 这次更新的版本信息
+        console.log('--fetchUpdate--', data, data.config);
+        // 检测是否是否可以进行安装了，双重判断吧，有时候会出现有更新版本但是暂时无法安装的情况（也可以去掉这一层）
+        chcp.isUpdateAvailableForInstallation((error, data) => {
+
+          if (error) {
+            console.log('No update was loaded => nothing to install');
+          } else {
+            // 询问用户是否更新
+            if ( window.confirm('检测到新版本，是否更新') ) {
+              // 更新中
+              chcp.installUpdate((error) => {
+                if (error) {
+                  // 更新失败
+                  console.log('Failed to install the update with error code: ' + error.code);
+                  console.log(error.description);
+                } else {
+                  // 更新成功
+                  console.log('Update installed!');
+                }
+              });
+            } else {
+              window.alert('您已拒绝更新');
+            }
+
+            // 对比版本号
+            console.log('Current content version: ' + data.currentVersion);
+            console.log('Ready to be installed:' + data.readyToInstallVersion);
+          }
+
+        });
+      });
+    });
+```
+
+
