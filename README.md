@@ -310,9 +310,7 @@ native-interface：当前 native side 的版本号
 
 ```
 
-在config.xml改成以上配置，取消自动下载，取消自动安装，然后通过[插件提供的jsAPI](https://link.jianshu.com?
-
-t=https://github.com/nordnet/cordova-hot-code-push/wiki/JavaScript-module)进行手动更新，以下在deviceready事件触发中示例（仅供参考）：
+在config.xml改成以上配置，取消自动下载，取消自动安装，然后通过[插件提供的jsAPI](https://github.com/nordnet/cordova-hot-code-push/wiki/JavaScript-module)进行手动更新，以下在deviceready事件触发中示例（仅供参考）：
 
 ```
     document.addEventListener('deviceready', () => {
