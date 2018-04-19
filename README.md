@@ -136,7 +136,7 @@ chcp.json 置于 www 目录根目录，例子如下：
 
   "name": "wps-*****",
 
-  "content_url": "https://kss.ksyun.com/*****/*****/",
+  "content_url": "https://kss.ksyun.com/www/",
 
   "ios_identifier": "326CN*****",
 
@@ -149,11 +149,6 @@ chcp.json 置于 www 目录根目录，例子如下：
   "min_native_interface": 1
 
 }
-
-实用小技巧：创建模版cordova-hcp.json，放在项目根目录下，避免每次修改chcp.json文件
-
-之后每次修改代码后，在项目根目录运行 cordova-hcp build
-就可以在www目录生成跟模版一样的chcp.json,只是release时间不一样
 
 
 1、配置项
@@ -268,7 +263,7 @@ Cordova 项目的 config.xml 文件用于设置项目配置选项，Cordova Hot 
 
 <chcp>
 
-    <config-file url="https://kss.ksyun.com/********/chcp.json" />
+    <config-file url="https://kss.ksyun.com/www/chcp.json" />
 
     <auto-download enabled="false" />
 
@@ -297,6 +292,12 @@ native-interface：当前 native side 的版本号
 * 执行 `cordova-hcp build` 生成 `chcp.json` 和 `chcp.manifest` 文件
 * 将 `www` 目录下的静态文件上传至服务器或者云存储目录
 
+#### 实用小技巧：
+根据chcp.json创建模版cordova-hcp.json，放在项目根目录下，避免每次修改chcp.json文件
+
+之后每次修改代码后，在项目根目录运行 cordova-hcp build
+就可以在www目录生成跟模版一样的chcp.json,只是release时间不一样
+
 问题描述1:
 
 ```
@@ -304,13 +305,18 @@ native-interface：当前 native side 的版本号
 2018-04-19 11:30:13.867520+0800 TestProject[20629:2757986] [] tcp_timers tcp[1] retransmit SYN 4
 ```
 
-请检查config.xml里面url地址是否正确
+1 请检查config.xml里面url地址是否正确
 ```
 <chcp>
     <config-file url="https://f7bf30f.ngrok.io/chcp.json"/>
   </chcp>
 ```
-
+2 请检查chcp.json content_url 是否正确
+```
+<chcp>
+"content_url": "https://kss.ksyun.com/www/"
+</chcp>
+```
 ## 5 [补充，手动更新](https://www.jianshu.com/p/40c7eaa5a8c6)
 
 以上教程的热更新属于自动化的，在用户完全不知情的情况下，于是就有了可选择更新的需求：
