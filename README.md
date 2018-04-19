@@ -297,6 +297,20 @@ native-interface：当前 native side 的版本号
 * 执行 `cordova-hcp build` 生成 `chcp.json` 和 `chcp.manifest` 文件
 * 将 `www` 目录下的静态文件上传至服务器或者云存储目录
 
+问题描述1:
+
+```
+2018-04-19 11:30:13.330839+0800 TestProject[20629:2757986] [] tcp_timers tcp[2] retransmit SYN 3
+2018-04-19 11:30:13.867520+0800 TestProject[20629:2757986] [] tcp_timers tcp[1] retransmit SYN 4
+```
+
+请检查config.xml里面url地址是否正确
+```
+<chcp>
+    <config-file url="https://f7bf30f.ngrok.io/chcp.json"/>
+  </chcp>
+```
+
 ## 5 [补充，手动更新](https://www.jianshu.com/p/40c7eaa5a8c6)
 
 以上教程的热更新属于自动化的，在用户完全不知情的情况下，于是就有了可选择更新的需求：
